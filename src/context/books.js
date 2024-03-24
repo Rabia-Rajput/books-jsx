@@ -11,10 +11,10 @@ function Provider({children}){
        };
        const editBookById =async (id, newTitle)=>{
         const response = await axios.put(`http://localhost:3001/books/${id}`,{
-            title: newTitle
+            title: newTitle,
         });
 const updatedBooks = books.map((book) => {
-    if(book.id===id){
+    if(book.id === id){
         return{...book, ...response.data};// response.data is updated book object came back from the api
 
     }
@@ -34,15 +34,15 @@ setBooks(updatedBooks);
     };
     const createBook = async (title) =>{
       const response = await axios.post('http://localhost:3001/books',{
-            title
+            title,
 
         });
          const updatedBooks = [
-            ...books, 
+            ...books,    response.data
+        ];
             // {id: Math.round(Math.random()*9999)
             //      , title}
-            response.data
-         ];
+         
          setBooks(updatedBooks);
 
 
@@ -56,7 +56,7 @@ setBooks(updatedBooks);
 
     };
    
-    return <BooksContext.Provider value={{valueToShare}}>
+    return <BooksContext.Provider value={valueToShare}>
         {children}
     </BooksContext.Provider>
 };
