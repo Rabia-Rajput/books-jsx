@@ -11,15 +11,16 @@ import BooksContext from "./context/books";
 
 function App (){
    const {fetchBooks} = useContext(BooksContext);
+   useEffect(() => {
+      fetchBooks();
+         },[] );
     // const [books , setBooks] = useState([]);
     // const fetchBooks = async()=>{
     //     const response= await axios.get('http://localhost:3001/books');
     //     setBooks(response.data);
     //    };
 
-       useEffect(() => {
-    fetchBooks();
-       },[] );
+   
 
 //     const editBookById =async (id, newTitle)=>{
 //         const response = await axios.put(`http://localhost:3001/books/${id}`,{
